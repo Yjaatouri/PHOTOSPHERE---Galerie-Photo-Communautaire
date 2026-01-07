@@ -40,7 +40,6 @@ class User
     public function getComments(): array { return $this->comments; }
     public function getLikes(): array { return $this->likes; }
 
-    
     public function setLastLogin(DateTime $date): void { $this->lastLogin = $date; }
     public function incrementUploadCount(): void { $this->upload_count++; }
     public function verifyPassword(string $password): bool { return $this->password_hash === $password; }
@@ -54,13 +53,11 @@ class User
 class Photo
 {
     public function __construct(
-        
+       
         protected int $id,
         protected int $user_id,
         protected string $file_path,
         protected DateTime $createdAt,
-
-    
         protected ?string $title = null,
         protected ?string $description = null,
         protected ?int $file_size = null,
@@ -71,13 +68,12 @@ class Photo
         protected ?DateTime $publishedAt = null
     ) {}
 
-   
+    
     protected ?User $user = null;
     protected array $albums = [];
     protected array $tags = [];
     protected array $comments = [];
     protected array $likes = [];
-
     public function getId(): int { return $this->id; }
     public function getUserId(): int { return $this->user_id; }
     public function getTitle(): ?string { return $this->title; }
@@ -108,8 +104,6 @@ class Album
         protected int $user_id,
         protected string $name,
         protected DateTime $createdAt,
-
-        
         protected ?string $description = null,
         protected bool $is_public = true,
         protected ?int $cover_photo_id = null,
@@ -162,19 +156,19 @@ class Tag
 class Comment
 {
     public function __construct(
-    
+        
         protected int $id,
         protected int $photo_id,
         protected int $user_id,
         protected string $content,
         protected DateTime $createdAt,
 
-        
+       
         protected ?int $parent_id = null,
         protected bool $is_edited = false
     ) {}
 
-    
+  
     protected ?User $user = null;
     protected ?Photo $photo = null;
     protected ?Comment $parent = null;
@@ -219,7 +213,7 @@ class Like
 class AuditLog
 {
     public function __construct(
-    
+        
         protected int $id,
         protected string $action,
         protected DateTime $createdAt,
